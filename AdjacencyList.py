@@ -1,45 +1,65 @@
-# Adjascency List representation in Python
-
-
-class Node:
-    def __init__(self, value):
-        self.vertex = value
-        self.next = None
-
+# A class to represent a graph object
 
 class Graph:
-    def __init__(self, num):
-        self.V = num
-        self.graph = [None] * self.V
+    
+    # Constructor to construct a graph
+    def __init__(self, list_edges, n):
+ 
+        # A list of lists to represent an adjacency list
+        self.adjList = [None] * n
+ 
+        # allocate memory for the adjacency list
+        for i in range(n):
+            self.adjList[i] = []
+ 
+        # add edges to the directed graph
+        for (src, dest, weight) in list_edges:
+            # allocate node in adjacency list from src to dest
+            self.adjList[src].append((dest, weight))
+    
+    #Function to build the adjacency list with edges
+def edges(myFile):
+    random_list = []
+    tuple_set = ()
+    for i in myFile.read():
+        if i.isdigit():
+            random_list.append(i)
+    
+        
+    edges_list = []
+    for j in range(2,len(random_list),3):
+        tuple_set = (random_list[j-2], random_list[j-1], random_list[j])
+        edges_list.append(tuple_set)
+    return edges_list
+    
+    
+    # list_edges = edges(myFile)
+                    
+                    
+# Function to print adjacency list representation of a graph
+def printGraph(graph):
+    for src in range(len(graph.adjList)):
+        # print current vertex and all its neighboring vertices
+        for (dest, weight) in graph.adjList[src]:
+            print(f'({src} —> {dest}, {weight}) ', end='')
+        print()
 
-    # Add edges
-    def add_edge(self, start, dest):
-        node = Node(dest)
-        node.next = self.graph[start]
-        self.graph[start] = node
 
-        node = Node(start)
-        node.next = self.graph[dest]
-        self.graph[dest] = node
-
-    # Print the graph
-    def print_agraph(self):
-        for i in range(self.V):
-            print("Vertex " + str(i) + ":", end="")
-            temp = self.graph[i]
-            while temp:
-                print(" -> {}".format(temp.vertex), end="")
-                temp = temp.next
-            print(" \n")
-
-
-if __name__ == "__main__":
-    V = 5
-    # Create graph and edges
-    graph = Graph(V)
-    graph.add_edge(0, 1)
-    graph.add_edge(0, 2)
-    graph.add_edge(0, 3)
-    graph.add_edge(1, 2)
-
-    graph.print_agraph()
+ 
+if __name__ == '__main__':
+ 
+    # Input: Edges in a weighted digraph (as per the above diagram)
+    # Edge (x, y, w) represents an edge from `x` to `y` having weight `w`
+    #edges = [(0, 1, 6), (1, 2, 7), (2, 0, 5), (2, 1, 4), (3, 2, 10),
+            # (4, 5, 1), (5, None, None)]
+ 
+    # No. of vertices (labelled from 0 to 5)
+    #n = 6
+    myFile = open("SimpleTest.txt")
+   
+    print(edges(myFile))
+    # construct a graph from a given list of edges
+    #graph = Graph(edges, n)
+ 
+    # print adjacency list representation of the graph
+    #printGraph(graph)
