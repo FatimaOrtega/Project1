@@ -6,10 +6,10 @@ class Graph:
     def __init__(self, list_edges, n):
  
         # A list of lists to represent an adjacency list
-        self.adjList = [None] * n
+        self.adjList = [None] * (n+1)
  
         # allocate memory for the adjacency list
-        for i in range(n):
+        for i in range(n+1):
             self.adjList[i] = []
  
         # add edges to the directed graph
@@ -18,20 +18,38 @@ class Graph:
             self.adjList[src].append((dest, weight))
     
     #Function to build the adjacency list with edges
+#def edges(myFile):
+#    random_list = []
+#    tuple_set = ()
+#    for i in myFile.read():
+#        if i.isdigit():
+#            random_list.append(int(i))
+
+#edges_list = []
+    #for j in range(2,len(random_list),3):
+    #    tuple_set = (random_list[j-2], random_list[j-1], random_list[j])
+    #    edges_list.append(tuple_set)
+    #return edges_list
+    
+    
 def edges(myFile):
-    random_list = []
+    #tuple with weighted edges
     tuple_set = ()
-    for i in myFile.read():
-        if i.isdigit():
-            random_list.append(i)
-    
-        
+    #edges list is a list of tuple with weighted edges
     edges_list = []
-    for j in range(2,len(random_list),3):
-        tuple_set = (random_list[j-2], random_list[j-1], random_list[j])
-        edges_list.append(tuple_set)
-    return edges_list
+    #read each line and get all weighted edges from a particular vertex
+    for i in myFile.readlines():
+        random_list = []
+        for j in i:
+            if j.isdigit():
+                random_list.append(int(j))
     
+        for j in range(2,len(random_list),3):
+            tuple_set = (random_list[j-2], random_list[j-1], random_list[j])
+            tuple_set2 = (random_list[j-2], random_list[j+1], random_list[j+2])
+            edges_list.append(tuple_set)
+            edges_list.append(tuple_set2)
+    return edges_list
     
     # list_edges = edges(myFile)
                     
@@ -57,9 +75,12 @@ if __name__ == '__main__':
     #n = 6
     myFile = open("SimpleTest.txt")
    
-    print(edges(myFile))
+    list_edges = (edges(myFile))
+    print(list_edges)
+    n = 8
     # construct a graph from a given list of edges
-    #graph = Graph(edges, n)
+    graph = Graph(list_edges, n)
+    printGraph(graph)
  
     # print adjacency list representation of the graph
     #printGraph(graph)
