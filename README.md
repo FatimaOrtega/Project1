@@ -8,7 +8,7 @@ The goal of this project is to implement Dijkstra's Algorithms using two differe
 
 # **Program Analysis**
 ## **Straightforward Implementation**
-### Algorithm Development (Modifications we made, Basic operations)
+### Algorithm Development
 - Implemented a graph that was given by link: <https://pythonwife.com/dijkstras-algorithm-in-python/>. We found an adjacency graph that implements weight on the edge. The main method, *VisualDirGraph*, allows the user to manually input the edge and weight, modified code to be able to create variables that will identify the vertex and weight from a text file in which the format **must remain static**. 
 
 - One major modification made in the program and code from online sources is how the program gets all of its edges and nodes from the txt file instead of manually adding each single node at a time. This modification is in function called **edges()** which takes the txt file as a parameter. The result from this function is used as an input in three other functions, i.e in the constructor for *VisualDirGraph*, in *addNodes*, and in *addEdges.*
