@@ -60,6 +60,7 @@ if __name__ == '__main__':
     # Input: Edges in a weighted digraph (as per the above diagram)
     myFile = open("SimpleTest.txt")
    
+    #n represents the number nodes
     list_edges = (edges(myFile))
     print(list_edges)
     n = 8
