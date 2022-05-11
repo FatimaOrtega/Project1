@@ -1,3 +1,11 @@
+#This file implements shortest path from a specific node to all other nodes in the graph...
+# ...given Huge Data set, using Heapq library
+#Name: Phumuzile Moyo, Fatima R. Ortega
+#Date: May 9, 2022
+#Title: Project 1
+#With Assistance: Most of our code comes from online sources, we added a few modifications... 
+# ...to allow to enter all Nodes at once, and all edges at once.
+
 import heapq
 from ChallengeDataSet import getAll
 

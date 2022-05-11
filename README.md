@@ -22,15 +22,19 @@ All the other functions used act as helper functions, our goal was to understand
 ### Algorithm Development
 - Implemented heap algorithm with help from given link: <https://bradfieldcs.com/algos/graphs/dijkstras-algorithm/#:~:text=Dijkstra's%20algorithm%20uses%20a%20priority,of%20vertices%20sorted%20by%20distance.> and given advice on how the algorithm gives the entries given go through the priority queue. The main method, *shortesPathToAll* ensures that as we explore one vertex, and checks to see which one is in the shortest distance.
 
-- One major modification that we made in the program and code from online sources was
+- One major modification that we made in the program and code from online sources was extracting all the nodes in the txt file and sending it into the dictionary, this would allow us to implement even more nodes in a file. This modification can be seen in **getAll** which takes the txt file as the parameter. This function is used when trying to print out to find specific nodes in the data set.
 
 - One of the basic operations in the algorithm: A distance dictionary in which it adds every vertex in the graph and creating a while loop that check every entry that gets added to the priority queue. 
 
-
-
 ### Predicted Time Complexity
 - Building the distances dictionary takes O(V) time because we have to add all the vertices to the dictionary. 
+
 - The while loop is executed once for every entry that gets added to the queue. An entry can only be added when we explore an edge, so there are at most O(E) iterations of the while loop since we have to explore all the edges.
-- The for loop goes through every vertex, and we ensure that we process a vertex only once; checking all outgoing edges, this is O(E). 
+
+- The for loop goes through every vertex, and we ensure that we process a vertex only once; checking all outgoing edges, this is O(E).
+
 - The operations in the priority queue involve adding or deleting an entry, this takes O(log E) run-time. So the overall running time for the Dijkstra Algorithm will be O(V + E log E).
--The other functions we constructed also take some time. To extract data from our text file, we have to go through all lines in the file. For each line, we also have to go through to 
+
+- The other functions we constructed also take some time. To extract data from our text file, we have to go through all lines,N, in the file. For each line, we have to go through each the entire length, L, of the line and do some operations. So extracting our data from text file will take O(NL) where N is the number of lines we have to read and L is the size of each line.
+
+- Another helper file that we constructed for someone that wants to seach for specific distances from one node to other. We used **findShortestPathToSm** function to do that. In this function, the user would iterate through an entire array that has all vertices they want to get to, and get the value of that key from dictionary with all shortest paths. iterating through array of size V takes O(V) run-time. Extracting the value of a key in a dictionary is constant. So this function takes O(V) time to find specific vertices from **distances** dictionary
